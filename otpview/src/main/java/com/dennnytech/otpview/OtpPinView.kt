@@ -32,7 +32,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import com.dennnytech.otpview.interfaces.OTPChangedHandler
 import com.dennnytech.otpview.interfaces.OTPCompletionHandler
 
-class OtpView @JvmOverloads constructor(
+class OtpPinView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -164,16 +164,16 @@ class OtpView @JvmOverloads constructor(
                     gravity = Gravity.CENTER
                     background = createBackgroundDrawable()
                     setPadding(0, 0, 0, 0)
-                    inputType = if (this@OtpView.isPassword) {
-                        if (this@OtpView.inputType == InputType.TYPE_CLASS_NUMBER) {
+                    inputType = if (this@OtpPinView.isPassword) {
+                        if (this@OtpPinView.inputType == InputType.TYPE_CLASS_NUMBER) {
                             InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
                         } else {
                             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                         }
                     } else {
-                        this@OtpView.inputType
+                        this@OtpPinView.inputType
                     }
-                    textSize = this@OtpView.textSize
+                    textSize = this@OtpPinView.textSize
                     setHintTextColor(hintTextColor)
                     setTextColor(textColor)
                     if (!fontFamily.isNullOrEmpty()) setTypeface(
@@ -182,9 +182,9 @@ class OtpView @JvmOverloads constructor(
                             resolveTextStyle()
                         )
                     )
-                    hint = this@OtpView.hint
-                    isCursorVisible = this@OtpView.showCursor
-                    if (this@OtpView.isPassword) {
+                    hint = this@OtpPinView.hint
+                    isCursorVisible = this@OtpPinView.showCursor
+                    if (this@OtpPinView.isPassword) {
                         transformationMethod = PasswordTransformationMethod.getInstance()
                     }
                     filters = arrayOf(InputFilter.LengthFilter(1))
@@ -225,14 +225,14 @@ class OtpView @JvmOverloads constructor(
                     gravity = Gravity.CENTER
                     background = createBackgroundDrawable()
                     setPadding(0, 0, 0, 0)
-                    inputType = if (this@OtpView.isPassword) {
-                        if (this@OtpView.inputType == InputType.TYPE_CLASS_NUMBER) {
+                    inputType = if (this@OtpPinView.isPassword) {
+                        if (this@OtpPinView.inputType == InputType.TYPE_CLASS_NUMBER) {
                             InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
                         } else {
                             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                         }
                     } else {
-                        this@OtpView.inputType
+                        this@OtpPinView.inputType
                     }
                     maxLines = 1
                     if (!fontFamily.isNullOrEmpty()) setTypeface(
@@ -241,12 +241,12 @@ class OtpView @JvmOverloads constructor(
                             resolveTextStyle()
                         )
                     )
-                    textSize = this@OtpView.textSize
+                    textSize = this@OtpPinView.textSize
                     setHintTextColor(hintTextColor)
                     setTextColor(textColor)
-                    hint = this@OtpView.hint
-                    isCursorVisible = this@OtpView.showCursor
-                    if (this@OtpView.isPassword) {
+                    hint = this@OtpPinView.hint
+                    isCursorVisible = this@OtpPinView.showCursor
+                    if (this@OtpPinView.isPassword) {
                         transformationMethod = PasswordTransformationMethod.getInstance()
                     }
                     filters = arrayOf(InputFilter.LengthFilter(1))
@@ -382,14 +382,14 @@ class OtpView @JvmOverloads constructor(
                         resolveTextStyle()
                     )
                 )
-                inputType = if (this@OtpView.isPassword) {
-                    if (this@OtpView.inputType == InputType.TYPE_CLASS_NUMBER) {
+                inputType = if (this@OtpPinView.isPassword) {
+                    if (this@OtpPinView.inputType == InputType.TYPE_CLASS_NUMBER) {
                         InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
                     } else {
                         InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                     }
                 } else {
-                    this@OtpView.inputType
+                    this@OtpPinView.inputType
                 }
             }
     }
@@ -616,7 +616,7 @@ class OtpView @JvmOverloads constructor(
         init {
             currentEditText.setOnKeyListener { _, keyCode, event ->
                 if (keyCode == KeyEvent.KEYCODE_DEL && event.action == KeyEvent.ACTION_DOWN) {
-                    this@OtpView.clearAnimation()
+                    this@OtpPinView.clearAnimation()
                     if (currentEditText.text.isNotEmpty()) {
                         currentEditText.text.clear()
                         if (index > 0) {
@@ -635,7 +635,7 @@ class OtpView @JvmOverloads constructor(
         }
 
         override fun afterTextChanged(editable: Editable?) {
-            this@OtpView.clearAnimation()
+            this@OtpPinView.clearAnimation()
             val text = editable.toString()
 
             if (!text.isEmpty()) updateOtp(index, text[0])
