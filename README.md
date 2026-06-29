@@ -1,8 +1,8 @@
 # OtpPinView
 
-A highly customizable OTP (One-Time Password) input view for Android, supporting multiple lines, custom shapes, and extensive styling options.
+A highly customizable OTP/PIN/Password input view for Android, supporting multiple lines, custom shapes, and extensive styling options.
 
-![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
+[![](https://jitpack.io/v/OlukaDenis/otp-view.svg)](https://jitpack.io/#OlukaDenis/otp-view)
 
 ## Features
 
@@ -13,6 +13,7 @@ A highly customizable OTP (One-Time Password) input view for Android, supporting
 - **Password Mode**: Mask input for sensitive OTPs.
 - **Auto-sizing**: Option to automatically fit fields within the available container width.
 - **Event Callbacks**: Simple interfaces for completion and text change events.
+
 
 ## Installation
 
@@ -30,7 +31,43 @@ dependencyResolutionManagement {
 }
 ```
 
-### Step 2: Add the dependency
+## Publishing the Library
+
+This library is configured to be published via **JitPack**.
+
+### Prepare for Release
+Ensure your `otpview/build.gradle.kts` has the correct `version`, `groupId`, and `artifactId`:
+```kotlin
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.github.OlukaDenis"
+                artifactId = "otpview"
+                version = "1.0.0"
+            }
+        }
+    }
+}
+```
+
+### Push to GitHub
+Commit and push your changes to your GitHub repository.
+
+### Create a Release
+1. Go to your repository on GitHub.
+2. Click on **Releases** -> **Create a new release**.
+3. Set the tag version (e.g., `1.0.0`) and title.
+4. Publish the release.
+
+### Verify on JitPack
+Go to [jitpack.io](https://jitpack.io), enter your repository URL, and click **Get it**. JitPack will build the library and provide the implementation coordinates.
+
+---
+
+
+###  Add the dependency
 Add the following dependency to your app's `build.gradle.kts`:
 
 ```kotlin
@@ -137,41 +174,6 @@ otpView.setTextColor(Color.BLACK)
 - `setTextSize(size: Float)`: Updates the text size.
 - `setOnCompleteListener(handler)`: Callback for when the OTP is fully entered.
 - `setOnChangedListener(handler)`: Callback for every character change.
-
----
-
-## Publishing the Library
-
-This library is configured to be published via **JitPack**.
-
-### 1. Prepare for Release
-Ensure your `otpview/build.gradle.kts` has the correct `version`, `groupId`, and `artifactId`:
-```kotlin
-afterEvaluate {
-    publishing {
-        publications {
-            create<MavenPublication>("release") {
-                from(components["release"])
-                groupId = "com.github.OlukaDenis"
-                artifactId = "otpview"
-                version = "1.0.0"
-            }
-        }
-    }
-}
-```
-
-### 2. Push to GitHub
-Commit and push your changes to your GitHub repository.
-
-### 3. Create a Release
-1. Go to your repository on GitHub.
-2. Click on **Releases** -> **Create a new release**.
-3. Set the tag version (e.g., `1.0.0`) and title.
-4. Publish the release.
-
-### 4. Verify on JitPack
-Go to [jitpack.io](https://jitpack.io), enter your repository URL, and click **Get it**. JitPack will build the library and provide the implementation coordinates.
 
 ---
 
